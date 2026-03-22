@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:craylib}",
+            "name": "Debug MyGame",
+            "target": "MyGame",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug MyGame"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:craylib}",
+            "name": "Release MyGame",
+            "target": "MyGame",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release MyGame"
+        }
+    ]
+}
