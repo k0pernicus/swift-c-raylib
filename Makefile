@@ -1,4 +1,4 @@
-SWIFT_SDK = swift-6.2.4-RELEASE_wasm
+SWIFT_SDK = swift-6.3-RELEASE_wasm
 WASM_BUILD_DIR = .build/wasm32-unknown-wasip1/debug/MyGame.build
 SWIFT_OBJ = $(WASM_BUILD_DIR)/main.swift.o
 RAYLIB_WASM = Sources/CRaylib/WASM/libraylib.a
@@ -17,15 +17,15 @@ run-mac:
 	swift run
 
 # WebAssembly
-$(WASI_STUBS): wasi_extra/wasi_stubs.c
+$(WASI_STUBS): wasi_extra/wasi_stubs.cpp
 	@echo "Compiling WASI stubs..."
-	emcc -c wasi_extra/wasi_stubs.c -o $(WASI_STUBS)
+	em++ -c wasi_extra/wasi_stubs.cpp -o $(WASI_STUBS)
 
 build-wasm: $(WASI_STUBS)
 	@echo "[1/2] Compiling Swift to WebAssembly object file..."
 	# swift build --swift-sdk $(SWIFT_SDK)
 	@echo "[2/2] Linking with Emscripten..."
-	emcc $(SWIFT_OBJ) $(RAYLIB_WASM) $(WASI_STUBS) \
+	em++ $(SWIFT_OBJ) $(RAYLIB_WASM) $(WASI_STUBS) \
 		-L$(SWIFT_WASI_LIB_PATH) \
 		-lswiftCore \
 		-s USE_GLFW=3 \
