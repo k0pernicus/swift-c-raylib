@@ -4,6 +4,7 @@ import PackageDescription
 let package = Package(
     name: "MyGame",
     targets: [
+        // Raylib
         .target(
             name: "craylib",
             path: "Sources/CRaylib",
@@ -20,9 +21,24 @@ let package = Package(
                 .unsafeFlags(["-L", "Sources/CRaylib/WASM"], .when(platforms: [.wasi])),
             ]
         ),
+        // ImGui
+        .target(
+            name: "imgui",
+            dependencies: ["craylib"],
+            path: "Sources/ImGui",
+            publicHeadersPath: ".",
+            linkerSettings: [
+                .unsafeFlags(["-L", "Sources/ImGui/macOS"], .when(platforms: [.macOS])),
+                .linkedLibrary("c++", .when(platforms: [.macOS])),
+            ]
+        ),
         .executableTarget(
             name: "MyGame",
-            dependencies: ["craylib"]
+            dependencies: ["craylib", "imgui"],
+            swiftSettings: [
+                // tells Swift to parse C++ directly
+                .interoperabilityMode(.Cxx)
+            ]
         ),
     ]
 )
