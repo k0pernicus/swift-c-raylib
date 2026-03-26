@@ -10,3 +10,5 @@ index.html
 index.js
 index.wasm
 wasi_extra/wasi_stubs.o
+imgui.ini
+*.o
