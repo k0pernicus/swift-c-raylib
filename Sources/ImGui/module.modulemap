@@ -1,0 +1,6 @@
+module ImGui [system] {
+    header "imgui.h"
+    header "rlImGui.h"
+    link "imgui"
+    export *
+}
