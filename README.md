@@ -1,6 +1,8 @@
-# Swift, C, and Raylib
+# Swift, Dear ImGui, and Raylib
 
 A test project for [my blog post "Testing the Swift C compatibility with Raylib"](https://carette.xyz/posts/swift_c_compatibility_with_raylib/).
+
+This project has been updated to include [Dear ImGui in this Swift project](https://carette.xyz/posts/swift_cpp_compatibility_with_raylib_and_imgui/).
 
 ## Build
 
